@@ -4,215 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Rマニュアル</title>
-    <style>
-        body{
-                width: 100%;
-                max-width: 960px;
-                padding: 24px;
-                margin: 0 auto;
-                line-height: 1.6;
-                box-sizing: border-box;
-        }
-        .land {
-                background-color: #dcdcdc;
-                padding: 3px;
-                border-radius: 4px;
-        }
-        .chapter {
-                border-bottom: 2px solid #4682b4;
-        }
-        .layout {
-                display: grid;
-                grid-template-columns: 200px 1fr;
-                gap: 24px;
-        }
-        .toc {
-                position: sticky;
-                top: 24px;
-                align-self: start;
-                background-color: #f6f6fa;
-                padding: 12px;
-                font-size: 14px;
-                height: fit-content;
-        }
-        .toc h2 {
-                font-size: 16px;
-                margin-top: 0;
-        }
-        .toc ul {
-                list-style: none;
-                padding-left: 0;
-        }
-        .toc li {
-                margin: 6px 0;
-        }
-        .toc a {
-                text-decoration: none;
-                color: #0366d6;
-        }
-        .toc a:hover {
-                text-decoration: underline;
-        }
-        .content{
-                background-color: white;
-                font-size: 14px;
-                width: 100%;
-                max-width: 100%;
-                box-sizing: border-box;
-        }
-        @media screen and (max-width: 1023px) {
-                .layout{
-                        grid-template-columns: 1fr;
-                }
-                .toc{
-                        display: none;
-                }
-        }
-        @media (max-width: 440px) {
-                header{
-                        width: 120% ;
-                        margin: 0;
-                        padding: 16px 0;
-                }
-                header h1{
-                        margin: 0;
-                }
-                .content{
-                        width: 100%;
-                        padding: 0 48px;
-                        font-size: 16px;
-                }
-                .toc{
-                        display: none;
-                }
-        }
-        @media print {
-                .toc {
-                        display: none;
-                }
-                .layout {
-                        grid-template-columns: 1fr;
-                }
-                .code-frame {
-                        background-color: whitesmoke;
-                        border: 1px solid #ccc;
-                        border-radius: 5px;
-                        padding: 0px 16px;
-                        margin: 24px 0px;
-                        overflow-x: auto;
-                        line-height: 16px;
-                        font-family: "Cascadia Code", "BIZ UDPゴシック", monospace;
-                        color: black;
-                        font-size: 12px;
-                }
-        }
-        .tips-box{
-                display: flex;
-                border: 1px solid #ccc;
-                border-left: 6px #4682b4;
-                border-radius: 4px;
-                margin: 16px 0;
-                background-color: #f9f9f9;
-                overflow: hidden;
-        }
-        .tips-label {
-                flex: 0 0 40px;
-                background: #4682b4;
-                color: white;
-                font-weight: bold;
-                text-align: center;
-                padding: 8px;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-        }
-        .tips-content {
-                padding: 8px 12px;
-                line-height: 1.6;
-        }
-        .more-detail{
-                color: #808080;
-                font-weight: 300;
-        }
-        .code-frame {
-                background-color: #282c34;
-                border: 1px solid #ccc;
-                border-radius: 5px;
-                padding: 0px 16px;
-                margin: 24px 0px;
-                line-height: 16px;
-                font-family: "Cascadia Code", "BIZ UDPゴシック", monospace;
-                color: whitesmoke;
-                font-size: 12px;
-                width: 100%;
-                max-width: 100%;
-                overflow-x: auto;
-                box-sizing: border-box;
-        }
-        .code-frame pre {
-                white-space: pre-wrap;
-                word-wrap: break-word;
-                display: inline-block;
-                width: max-content;
-                max-width: 100%;
-        }
-        .tips {
-                color: #3366ff;
-                font-weight: 600;
-        }
-        .c {
-                color: #abb2bf;
-        }
-        .v{
-                color: #98fb98;
-        }
-        .l{
-                color: 	#E1C582;
-        }
-        .o{
-                color: #ff8c00;
-        }
-        .res{
-                color: #CC0000;
-                font-weight: bold;
-        }
-        .ch-code{
-                background-color: #ECECEC;
-                border-radius: 5px;
-                padding: 0px 4px;
-                color: black;
-                font-weight: bold;
-        }
-        table{
-                border-collapse: collapse;
-                width: 100%;
-        }
-        th, td{
-                border: 1px solid black;
-                text-align: left;
-                padding: 8px 12px;
-        }
-        th {
-            background-color: #f6f8fa; 
-            font-weight: bold;
-}
-        table td:nth-child(1),
-        table th:nth-child(1) {
-            width: 150px;
-            min-width: 150px;
-            max-width: 150px;
-        }
-        tr:hover {
-           background-color: #f1f1f1;
-        }
-    </style>
+    <link rel="stylesheet" href="maintext-style.css">
 </head>
 <body>
         <header>
-        <h1>Rの使いかたマニュアル</h1>
+                <h1>Rの使いかたマニュアル</h1>
         </header>
-        <div class="layout">
-                <aside class="toc">
+                <aside class="toc_left">
                         <h1>目次</h1>
                         <ul>
                                 <h2><a href="#1">データ型とデータ構造</a></h2>
@@ -229,7 +27,7 @@
                                         </ul>
                         </ul>
                 </aside>
-                <main class="content">
+                <main>
                 <h2 class="chapter" id="1">1. データ型とデータ構造</h2>
                         <div>
                                 <h3 id="1-1">(1) データ型</h3>
@@ -1302,6 +1100,5 @@ list.files(work_root, recursive = <span class="l">FALSE</span>)
                                 </ul>
                         </div>
                 </main>
-        </div>
 <body>
 </html>
