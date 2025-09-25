@@ -1,0 +1,1307 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rマニュアル</title>
+    <style>
+        body{
+                width: 100%;
+                max-width: 960px;
+                padding: 24px;
+                margin: 0 auto;
+                line-height: 1.6;
+                box-sizing: border-box;
+        }
+        .land {
+                background-color: #dcdcdc;
+                padding: 3px;
+                border-radius: 4px;
+        }
+        .chapter {
+                border-bottom: 2px solid #4682b4;
+        }
+        .layout {
+                display: grid;
+                grid-template-columns: 200px 1fr;
+                gap: 24px;
+        }
+        .toc {
+                position: sticky;
+                top: 24px;
+                align-self: start;
+                background-color: #f6f6fa;
+                padding: 12px;
+                font-size: 14px;
+                height: fit-content;
+        }
+        .toc h2 {
+                font-size: 16px;
+                margin-top: 0;
+        }
+        .toc ul {
+                list-style: none;
+                padding-left: 0;
+        }
+        .toc li {
+                margin: 6px 0;
+        }
+        .toc a {
+                text-decoration: none;
+                color: #0366d6;
+        }
+        .toc a:hover {
+                text-decoration: underline;
+        }
+        .content{
+                background-color: white;
+                font-size: 14px;
+                width: 100%;
+                max-width: 100%;
+                box-sizing: border-box;
+        }
+        @media screen and (max-width: 1023px) {
+                .layout{
+                        grid-template-columns: 1fr;
+                }
+                .toc{
+                        display: none;
+                }
+        }
+        @media (max-width: 440px) {
+                header{
+                        width: 120% ;
+                        margin: 0;
+                        padding: 16px 0;
+                }
+                header h1{
+                        margin: 0;
+                }
+                .content{
+                        width: 100%;
+                        padding: 0 48px;
+                        font-size: 16px;
+                }
+                .toc{
+                        display: none;
+                }
+        }
+        @media print {
+                .toc {
+                        display: none;
+                }
+                .layout {
+                        grid-template-columns: 1fr;
+                }
+                .code-frame {
+                        background-color: whitesmoke;
+                        border: 1px solid #ccc;
+                        border-radius: 5px;
+                        padding: 0px 16px;
+                        margin: 24px 0px;
+                        overflow-x: auto;
+                        line-height: 16px;
+                        font-family: "Cascadia Code", "BIZ UDPゴシック", monospace;
+                        color: black;
+                        font-size: 12px;
+                }
+        }
+        .tips-box{
+                display: flex;
+                border: 1px solid #ccc;
+                border-left: 6px #4682b4;
+                border-radius: 4px;
+                margin: 16px 0;
+                background-color: #f9f9f9;
+                overflow: hidden;
+        }
+        .tips-label {
+                flex: 0 0 40px;
+                background: #4682b4;
+                color: white;
+                font-weight: bold;
+                text-align: center;
+                padding: 8px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+        }
+        .tips-content {
+                padding: 8px 12px;
+                line-height: 1.6;
+        }
+        .more-detail{
+                color: #808080;
+                font-weight: 300;
+        }
+        .code-frame {
+                background-color: #282c34;
+                border: 1px solid #ccc;
+                border-radius: 5px;
+                padding: 0px 16px;
+                margin: 24px 0px;
+                line-height: 16px;
+                font-family: "Cascadia Code", "BIZ UDPゴシック", monospace;
+                color: whitesmoke;
+                font-size: 12px;
+                width: 100%;
+                max-width: 100%;
+                overflow-x: auto;
+                box-sizing: border-box;
+        }
+        .code-frame pre {
+                white-space: pre-wrap;
+                word-wrap: break-word;
+                display: inline-block;
+                width: max-content;
+                max-width: 100%;
+        }
+        .tips {
+                color: #3366ff;
+                font-weight: 600;
+        }
+        .c {
+                color: #abb2bf;
+        }
+        .v{
+                color: #98fb98;
+        }
+        .l{
+                color: 	#E1C582;
+        }
+        .o{
+                color: #ff8c00;
+        }
+        .res{
+                color: #CC0000;
+                font-weight: bold;
+        }
+        .ch-code{
+                background-color: #ECECEC;
+                border-radius: 5px;
+                padding: 0px 4px;
+                color: black;
+                font-weight: bold;
+        }
+        table{
+                border-collapse: collapse;
+                width: 100%;
+        }
+        th, td{
+                border: 1px solid black;
+                text-align: left;
+                padding: 8px 12px;
+        }
+        th {
+            background-color: #f6f8fa; 
+            font-weight: bold;
+}
+        table td:nth-child(1),
+        table th:nth-child(1) {
+            width: 150px;
+            min-width: 150px;
+            max-width: 150px;
+        }
+        tr:hover {
+           background-color: #f1f1f1;
+        }
+    </style>
+</head>
+<body>
+        <header>
+        <h1>Rの使いかたマニュアル</h1>
+        </header>
+        <div class="layout">
+                <aside class="toc">
+                        <h1>目次</h1>
+                        <ul>
+                                <h2><a href="#1">データ型とデータ構造</a></h2>
+                                        <ul>
+                                                <li><a href="#1-1">(1)データ型</a></li>
+                                                <li><a href="#1-2">(2)データ構造</a></li>
+                                        </ul>
+                                <h2><a href="#2">Rの基本構文</a></h2>
+                                        <ul>
+                                                <li><a href="#2-1">(1)基本演算</a></li>
+                                                <li><a href="#2-2">(2)特殊な値</a></li>
+                                                <li><a href="#2-3">(3)条件分岐</a></li>
+                                                <li><a href="#2-4">(4)ループ</a></li>
+                                        </ul>
+                        </ul>
+                </aside>
+                <main class="content">
+                <h2 class="chapter" id="1">1. データ型とデータ構造</h2>
+                        <div>
+                                <h3 id="1-1">(1) データ型</h3>
+                                        <div>
+                                                <p>プログラミング言語の世界では、データの性質は“型”で表されており、同じ「2」でも、整数型<code>2L</code>、数値型<code>2.0</code>、文字列型<code>"2"</code>のように型が違えば計算結果や処理方法も変わってくる。そのため、データセットを作成するときはそれぞれのデータの型を確認・統一することで予期せぬ結果の回避に繋がる。</p>
+                                                <p>統計関係でよく使うのはこの辺り。</p>
+                                        </div>
+                                <ul>
+                                        <li><strong>数値型(numeric)</strong><br>
+                                        実数を扱っており、数値計算を行うときに最もオーソドックスな型。<br>
+                                        <span class="more-detail">倍精度浮動小数点数で表され、1要素あたり8バイトで保存される。</span>
+                                                <div class="code-frame">
+                                                        <code>
+                                                                x <- 1.002<br><br>
+                                                                <span class="c"># xのデータ型を確認</span><br>
+                                                                class(x)<br>
+                                                                <span class="res"># [1] "numeric"</span>
+                                                        </code>
+                                                </div>
+                                        </li>
+                                        <li><strong>整数型(integer)</strong><br>
+                                        整数を扱っており、明示的に整数型として代入する場合はLを付ける。<br>
+                                        <span class="more-detail">1要素当たり4バイトで保存されるため、大規模な整数データを扱う際はnumeric型よりもinteger型の方が省メモリになる。計算速度は両者とも大差ない。</span>
+                                                <div class="code-frame">
+                                                        <code>
+                                                                x <- <span class="v">12L</span><br><br>
+                                                                <span class="c"># xのデータ型を確認</span><br>
+                                                                class(x)<br>
+                                                                <span class="res"># [1] "integer"</span>
+                                                        </code>
+                                                </div>
+                                        </li>
+                                        <li><strong>論理型(logical)</strong><br>
+                                        真偽値(TRUE/FALSE)を扱う。
+                                                <div class="code-frame">
+                                                        <code>
+                                                                x <- <span class="l">TRUE</span><br><br>
+                                                                <span class="c"># xのデータ型を確認</span><br>
+                                                                class(x)<br>
+                                                                <span class="res"># [1] "logical"</span>
+                                                        </code>
+                                                </div>
+                                        </li>
+                                        <li><strong>文字列型(character)</strong><br>
+                                        文字列を扱う。明示的に文字列として代入するときは<code>""</code>を付ける。<br>
+                                        また、計算ができないので、数字が文字列型として保存されているとき注意が必要。<br>
+                                        <span class="more-detail">最低8バイト消費し、文字列の長さの分だけサイズが大きくなる。</span>
+                                                <div class="code-frame">
+                                                        <code>
+                                                                x <- <span class="v">"3"</span><br><br>
+                                                                <span class="c"># xのデータ型を確認</span><br>
+                                                                class(x)<br>
+                                                                <span class="res"># [1] "character"</span><br><br>
+                                                                <span class="c"># character型は計算ができないことの確認</span><br>
+                                                                x + 2<br>
+                                                                <span class="res"># x + 2 でエラー: 二項演算子の引数が数値ではありません</span>
+                                                        </code>
+                                                </div>
+                                        </li>
+                                        <li><strong>Date型</strong><br>
+                                        「日付のみ」を表す型。<br>
+                                        引き算により日数差を計算することもでき、結果はdifftime型となる。<br>
+                                        <span class="more-detail">内部的には1970-01-01からの日数がdouble型として保持されている。</span>
+                                                <div class="code-frame">
+                                                        <code>
+                                                                date <- as.Date(<span class="v">"2025-09-07"</span>)<br><br>
+                                                                <span class="c"># dateのデータ型を確認</span><br>
+                                                                class(date)<br>
+                                                                <span class="res"># [1] "Date"</span><br><br>
+                                                                date2 <- as.Date(<span class="v">"2026-06-15"</span>)<br><br>
+                                                                <span class="c"># 2026-06-15と2025-09-07の日数差を計算</span><br>
+                                                                diff <- date2 - date<br>
+                                                                diff<br>
+                                                                <span class="res"># Time difference of 281 days</span><br><br>
+                                                                <span class="c"># 計算結果のデータ型を確認</span><br>
+                                                                class(diff)<br>
+                                                                <span class="res"># [1] "difftime"</span><br><br>
+                                                                <span class="c"># numeric型に変換すると日数になることの確認</span><br>
+                                                                as.numeric(date)<br>
+                                                                <span class="res"># [1] 20338</span>
+                                                        </code>
+                                                </div>
+                                        </li>
+                                        <li><strong>POSIXct型</strong><br>
+                                        「日付＋時間」を表す型。<br>
+                                        引き算により経過時間を計算することもでき、結果はdifftime型となる。<br>
+                                        <span class="more-detail">内部的にはUTCエポック(1970-01-01 00:00:00 UTC)からの経過秒数がdouble型として保持されている。</span>
+                                                <div class="code-frame">
+                                                        <code>
+                                                                <span class="c">#タイムゾーンをAsia/Tokyoに指定する場合(デフォルトではtz = "UTC")</span><br>
+                                                                t <- as.POSIXct(<span class="v">"2025-09-07 16:20:00"</span>, tz = <span class = "v">"Asia/Tokyo"</span>)<br>
+                                                                t<br>
+                                                                <span class="res"># [1] "2025-09-07 16:20:00 JST"</span><br><br>
+                                                                <span class="c"># tのデータ型を確認</span><br>
+                                                                class(t)<br>
+                                                                <span class="res"># [1] "POSIXct" "POSIXt"</span><br><br>
+                                                                <span class="c"># numeric型に変換するとUTCエポックからの経過秒数になることの確認</span><br>
+                                                                as.numeric(t)<br>
+                                                                <span class="res"># [1] 1757229600</span>
+                                                        </code>
+                                                </div>
+                                        </li>
+                                </ul>
+                                <h4>1-(1) まとめ</h4>
+                                        <div>
+                                                <ul>
+                                                        <li>Rでは値の見た目は同じでも型が違うことがあり、その違いによって計算結果や処理方法が変わる。</li>
+                                                        <li>データのインポート/エクスポートの際にデータ型が変わってしまうことがあり、予期せぬ計算結果の原因となるので<code>class()</code>などで確認する癖をつけるのが大事。</li>
+                                                        <li>大規模データを扱う際は特に、<code>character</code>型を<code>numeric</code>型や<code>integer</code>型に変換しておくと省メモリになるのでおすすめ。</li>
+                                                </ul>
+                                        </div>
+                                <h4>登場した関数</h4>
+                                <ul>
+                                        <li><strong>データ型を確認する関数</strong>
+                                        <div class="code-frame">
+                                                <pre><code>class(x)</code></pre>
+                                        </div>
+                                        <table>
+                                                <thead>
+                                                        <tr>
+                                                                <th>引数</th>
+                                                                <th>説明</th>
+                                                        </tr>
+                                                </thead>
+                                                <tbody>
+                                                        <td>x</td>
+                                                        <td>データ型を確認したい変数(ベクトルやData.tableでも可)</td>
+                                                </tbody>
+                                        </table>
+                                        </li><br>
+                                        <li><strong>numeric型に変換する関数</strong>
+                                        <div class="code-frame">
+                                                <pre><code>as.numeric(x)</code></pre>
+                                        </div>
+                                        <table>
+                                                <thead>
+                                                        <tr>
+                                                                <th>引数</th>
+                                                                <th>説明</th>
+                                                        </tr>
+                                                </thead>
+                                                <tbody>
+                                                        <tr>
+                                                        <td>x</td>
+                                                        <td>numeric型に変換したいオブジェクト(文字列、日付型など)</td>
+                                                        </tr>
+                                                </tbody>
+                                        </table>
+                                        </li><br>
+                                        <li><strong>Date型に変換する関数</strong>
+                                        <div class="code-frame">
+                                                <pre><code>as.Data(x)</code></pre>
+                                        </div>
+                                        <table>
+                                                <thead>
+                                                        <tr>
+                                                                <th>引数</th>
+                                                                <th>説明</th>
+                                                        </tr>
+                                                </thead>
+                                                <tbody>
+                                                        <tr>
+                                                                <td>x</td>
+                                                                <td>Data型に変換したい文字列(“yyyy-mm-dd”)</td>
+                                                        </tr>
+                                                </tbody>
+                                        </table>
+                                        </li><br>
+                                        <li><strong>POSIXct型に変換する関数</strong>
+                                        <div class="code-frame">
+                                                <pre><code>as.POSIXct(x, tz)</code></pre>
+                                        </div>
+                                        <table>
+                                                <thead>
+                                                        <tr>
+                                                                <th>引数</th>
+                                                                <th>説明</th>
+                                                        </tr>
+                                                </thead>
+                                                <tbody>
+                                                        <tr>
+                                                                <td>x</td>
+                                                                <td>POSIXct型に変換したい文字列(“yyyy-mm-dd hh:mm:ss”)</td>
+                                                        </tr>
+                                                        <tr>
+                                                                <td>tz</td>
+                                                                <td>タイムゾーンの指定, 省略した場合UTCに設定</td>
+                                                        </tr>
+                                                </tbody>
+                                        </table>
+                                        </li>
+                                </ul>
+                        </div><br>
+                        <div>
+                                <h3 id="1-2">(2) データ構造</h3>
+                                        <div>
+                                                <p>複数の値を格納する「入れ物」を<strong>データ構造</strong>と言う。Rではデータ構造の種類によって格納できるデータ型や操作方法が異なる。</p>
+                                        </div>
+                                <ul>
+                                        <li><strong>ベクトル(vector)</strong><br>
+                                        同一データ型の要素を並べた１次元配列<br>
+                                        基本データ型(numeric, integer, logical, complex, character, raw)しか代入できない。
+                                                <div class="code-frame">
+                                                        <code>
+                                                                <span class="c">#ベクトルの作り方(よく使うやつ)</span><br>
+                                                                a <- numeric(<span class="v">4</span>)<br>
+                                                                a<br>
+                                                                <span class="res"># [1] 0 0 0 0</span><br><br>
+                                                                name <- c(<span class="v">"Tanaka"</span>, <span class="v">"Satou"</span>, <span class="v">"Yamada"</span>)<br>
+                                                                name<br>
+                                                                <span class="res"># [1] "Tanaka" "Satou"  "Yamada"</span>
+                                                        </code>
+                                                </div>
+                                        </li>
+                                        <li id="intro-factor"><strong>因子(factor)</strong><br>
+                                        character型のデータをカテゴリデータ(名義尺度・順序尺度で表されるデータ)として扱えるようになる。<br>
+                                        因子化しておくと、統計解析を行う際に文字列の見た目のまま変数として扱えるため、使用頻度は多い。<br>
+                                        <span class="more-detail">内部的には「文字列のベクトル」を「ラベル＋整数のベクトル」として扱うため、重複の多い文字列を扱う際はメモリ効率が良くなる。</span>
+                                                <div class="code-frame">
+                                                        <code>
+                                                                <span class="c"># 文字列(名義尺度) → 因子</span><br>
+                                                                factors <- factor(c(<span class="v">"Tokyo"</span>, <span class="v">"Chiba"</span>, <span class="v">"Chiba"</span>, <span class="v">"Tokyo"</span>, <span class="v">"Kanagawa"</span>))<br>
+                                                                factors<br>
+                                                                <span class="res"># [1] Tokyo    Chiba    Chiba    Tokyo    Kanagawa<br>
+                                                                # Levels: Chiba Kanagawa Tokyo</span><br><br>
+                                                                <span class="c"># 文字列(順序尺度) → 因子</span><br>
+                                                                gakureki <- factor(c(<span class="v">"大卒"</span>, <span class="v">"大卒"</span>, <span class="v">"修士"</span>, <span class="v">"高卒"</span>, <span class="v">"高卒"</span>, <span class="v">"大卒"</span>, <span class="v">"高卒"</span>),<br>
+                                                                                　　　　　　　　　&nbsp;levels = c(<span class="v">"中卒"</span>, <span class="v">"高卒"</span>, <span class="v">"大卒"</span>, <span class="v">"修士"</span>),<br>
+                                                                                　　　　　　　　　&nbsp;ordered = <span class="l">TRUE</span>)<br>
+                                                                gakureki<br>
+                                                                <span class="res"># [1] 大卒 大卒 修士 中卒 高卒 大卒 高卒<br>
+                                                                # Levels: 中卒 < 高卒 < 大卒 < 修士</span>
+                                                        </code>
+                                                </div>
+                                        </li>
+                                        <li><strong>行列(matrix)</strong><br>
+                                        同一データ型の要素を行×列に並べた2次元配列。<br>
+                                        線形代数における行列と同じで、要素が数値の場合は行列計算(加算・乗算・転置など)も可能。
+                                                <div class="code-frame">
+                                                        <pre><code><span class="c"># 行列の作成</span>
+m <- matrix(<span class="v">1</span>:<span class="v">6</span>, nrow = <span class="v">2</span>, ncol = <span class="v">3</span>)
+m<span class="res">
+#      [,1] [,2] [,3]
+# [1,]    1    3    5
+# [2,]    2    4    6</span><br>
+<span class="c"># 行列操作(例：転置)</span>
+t(m)<span class="res">
+#      [,1] [,2]
+# [1,]    1    2
+# [2,]    3    4
+# [3,]    5    6</span></code></pre>
+                                                </div>
+                                        </li>
+                                        <li id="intro-dataframe"><strong>データフレーム(data.frame)</strong><br>
+                                        異なるデータ型の列を持つ表形式の構造。<br>
+                                        列ごとに列名やデータ型を指定することができ、統計解析やデータ整理などで多用する。<br>
+                                        (個人的には、文法の柔軟性や処理速度に優れたデータテーブル(data.table)の利用がおすすめ)
+                                                <div class="code-frame">
+                                                        <pre><code><span class="c"># data.frameの作成</span>
+df <- data.frame(id = <span class="v">1</span>:<span class="v">3</span>, nema = c(<span class="v">"Tanaka"</span>, <span class="v">"Satou"</span>, <span class="v">"Yamada"</span>))
+df<span class="res">
+#   id   nema
+# 1  1 Tanaka
+# 2  2  Satou
+# 3  3 Yamada</span><br> 
+<span class="c"># id列の抽出</span>
+df$id
+<span class="res"># [1] 1 2 3</span></code></pre>
+                                                </div>
+                                        </li>
+                                        <li id="intro-list"><strong>リスト(list)</strong><br>
+                                        異なるデータ型の要素をまとめて格納できる。また、データ構造を格納して入れ子構造にすることも出来る。<br>
+                                        かなり柔軟な運用ができるので使いどころは非常に多い。
+                                                <div  class="code-frame">
+                                                        <pre><code><span class="c"># リストの作成</span>
+list_ex <- list(num = c(<span class="v">1</span>:<span class="v">3</span>),
+                char = <span class="v">"Tokyo"</span>,
+                df = data.frame(x = c(<span class="v">1</span>, <span class="v">2</span>), y = c(<span class="v">"a"</span>, <span class="v">"b"</span>)))<br>
+<span class="c"># リストの要素にアクセス</span>
+<span class="c"># 要素名でアクセス</span>
+list_ex$num
+<span class="res"># [1] 1 2 3</span><br>
+list_ex[[<span class="v">"char"</span>]]
+<span class="res"># [1] "Tokyo"</span><br> 
+<span class="c"># 順番でアクセス</span>
+list_ex[[<span class="v">3</span>]]
+<span class="res">#   x y</span>
+<span class="res"># 1 1 a</span>
+<span class="res"># 2 2 b</span></code></pre>
+                                                </div>
+                                        </li>
+                                </ul>
+                                <h4>1-(2) まとめ</h4>
+                                        <div>
+                                                <ul>
+                                                        <li>Rで複数の値を同時に扱うときは、データ構造という「入れ物」に格納してから処理することになる。<br>
+                                                        ・ベクトル：同じ型のデータを1列に並べたいとき<br>
+                                                        ・リスト：異なる方や構造を1つにまとめたいとき<br>
+                                                        ・データフレーム：表形式で「列＝属性」×「行＝レコード」にまとめたいとき<br>
+                                                        </li>
+                                                        <li>入れ物ごとに格納できるデータ型や処理方法が変わってくるため、データの形式や行いたい処理に合わせて入れ物選びが肝心。
+                                                        </li>
+                                                        <li>データを追加する際は主に<br>
+                                                                <ol>
+                                                                        <li>既存のデータ構造の末尾に新しいデータ(レコード)を追加する</li>
+                                                                        <li>空のベクトル・リストを作成しておいて、後からアドレスを指定して格納する</li>
+                                                                </ol>
+                                                        の2通りの方法がある。<br>
+                                                        実務的な面では、2の方がメモリに負荷がかからず処理速度が速い。
+                                                        </li>
+                                                        <li><span class="more-detail">ベクトルやデータフレームは処理の度にデータをコピー＆新規作成する仕組みが多く、データサイズが大きいとメモリ効率が悪化する。一方で、data.tableは追加・更新が参照ベースで行われ、速度とメモリ効率が大幅に改善される。</span><br>
+                                                        そのため、実際に表形式のデータを扱う際は<code>data.table</code>を利用することが強く推奨される。
+                                                        </li>
+                                                </ul>
+                                        </div>
+                                <h4>登場した関数</h4>
+                                <ul>
+                                        <li><strong>引数をベクトルにまとめる関数</strong>
+                                                <div class="code-frame">
+                                                        <pre><code>c(x, …)</code></pre>
+                                                </div>
+                                                <table>
+                                                        <thead>
+                                                                <tr>
+                                                                        <th>引数</th>
+                                                                        <th>説明</th>
+                                                                </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                                <tr>
+                                                                        <td>x</td>
+                                                                        <td>格納するデータ。複数指定可能。</td>
+                                                                </tr>
+                                                        </tbody>
+                                                </table><br>
+                                                <div class="tips-box">
+                                                        <div class="tips-label">Tips</div>
+                                                        <div class="tips-content">異なる型を同時に引数とした場合、最も幅の広いデータ型に自動変換される。</div>
+                                                </div>
+                                                <div class="code-frame">
+                                                        <pre><code>vec <- c(<span class="v">3</span>, <span class="v">4L</span>, <span class="v">"5"</span>)<br>
+class(vec)
+<span class="res"># [1] "character"</span></code></pre>
+                                                </div>
+                                                <div class="tips-box">
+                                                        <div class="tips-label">Tips</div>
+                                                        <div class="tips-content">既存のベクトルを結合して新しいベクトルを作ることも可能<br>(=データの追加)</div>
+                                                </div>
+                                                <div class="code-frame">
+                                                        <pre><code>vec1 <- c(<span class="v">1</span>:<span class="v">3</span>)
+vec2 <- c(<span class="v">4</span>:<span class="v">5</span>)<br>
+<span class="c"># vec1とvec2を結合する</span>
+vec3 <- c(vec1, vec2)
+vec3
+<span class="res"># [1] 1 2 3 4 5</span></code></pre>
+                                                </div>
+                                        </li>
+                                        <li><strong>空の数値ベクトルを作成する関数</strong><br>
+                                        要素はすべて0になる。
+                                                <div class="code-frame">
+                                                        <pre><code>numeric(length)</code></pre>
+                                                </div>
+                                                <table>
+                                                        <thead>
+                                                                <tr>
+                                                                        <th>引数</th>
+                                                                        <th>説明</th>
+                                                                </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                                <tr>
+                                                                        <td>length</td>
+                                                                        <td>生成するベクトルの長さ。省略した場合0r</td>
+                                                                </tr>
+                                                        </tbody>
+                                                </table>
+                                                <div class="tips-box">
+                                                        <div class="tips-label">Tips</div>
+                                                        <div class="tips-content">空ベクトルを作成してから、あとでアドレスを指定してデータを追加していく方法</div>
+                                                </div>
+                                                <div class="code-frame">
+                                                        <pre><code><span class="c"># まずは空ベクトルを作成</span>
+vec <- numeric(<span class="v">4</span>)
+vec
+<span class="res"># [1] 0 0 0 0</span><br>
+<span class="c"># i番目の要素にi×2を格納</span>
+<span class="o">for</span> (i <span class="o">in</span> <span class="v">1</span>:<span class="v">4</span>) {
+&nbsp;&nbsp;vec[i] <- i * <span class="v">2</span>
+}
+vec
+<span class="res"># [1] 2 4 6 8</code></pre>
+                                                </div>
+                                        </li>
+                                        <li><strong>因子型データを作成する関数</strong><br>
+                                        使いかたは<a href="#intro-factor">因子(factor)</a>を参照
+                                                <div class="code-frame">
+                                                        <pre><code>factor(x, levels, labels, exclude, ordered, nmax)</code></pre>
+                                                </div>
+                                                <table>
+                                                        <thead>
+                                                                <tr>
+                                                                        <th>引数</th>
+                                                                        <th>説明</th>
+                                                                </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                                <tr>
+                                                                        <td>x</td>
+                                                                        <td>因子に変換したいベクトル</td>
+                                                                </tr>
+                                                                <tr>
+                                                                        <td>levels</td>
+                                                                        <td>水準を指定。省略時はunique(x)(=重複を削除したxの要素)の順序になる。</td>
+                                                                </tr>
+                                                                <tr>
+                                                                        <td>labels</td>
+                                                                        <td>各levelに対して表示するときの見た目の名前を指定。</td>
+                                                                </tr>
+                                                                <tr>
+                                                                        <td>exclude</td>
+                                                                        <td>除外する値を指定。省略時はNA</td>
+                                                                </tr>
+                                                                <tr>
+                                                                        <td>ordered</td>
+                                                                        <td>順序付き因子にするかどうか(TRUE/FALSEで指定)。省略時はFALSE</td>
+                                                                </tr>
+                                                                <tr>
+                                                                        <td>nmax</td>
+                                                                        <td>内部的な引数なので指定不要</td>
+                                                                </tr>
+                                                        </tbody>
+                                                </table>
+                                        </li><br>
+                                        <li><strong>行列を作成する関数</strong>
+                                                <div class="code-frame">
+                                                        <pre><code>matrix(data, nrow, ncol, byrow, dimnames)</code></pre>
+                                                </div>
+                                                <table>
+                                                        <thead>
+                                                                <tr>
+                                                                        <th>引数</th>
+                                                                        <th>説明</th>
+                                                                </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                                <tr>
+                                                                        <td>data</td>
+                                                                        <td>行列に変換したいベクトル</td>
+                                                                </tr>
+                                                                <tr>
+                                                                        <td>nrow</td>
+                                                                        <td>行数(整数のみ)</td>
+                                                                </tr>
+                                                                <tr>
+                                                                        <td>ncol</td>
+                                                                        <td>列数(整数のみ)</td>
+                                                                </tr>
+                                                                <tr>
+                                                                        <td>byrow</td>
+                                                                        <td>ベクトルを行単位で詰めていくかどうか(TRUE/FALSEで指定)。<br>省略時はFALSE</td>
+                                                                </tr>
+                                                                <tr>
+                                                                        <td>dimnames</td>
+                                                                        <td>行名・列名をリスト形式で指定可能(あんまり使わない)</td>
+                                                                </tr>
+                                                        </tbody>
+                                                </table>
+                                                <div class="tips-box">
+                                                        <div class="tips-label">Tips</div>
+                                                        <div class="tips-content">デフォルトでは列ごとに要素が埋まっていく</div>
+                                                </div>
+                                                <div class="code-frame">
+                                                        <pre><code><span class="c"># デフォルト(列ごとに埋まっていく)</span>
+m <- matrix(c(<span class="v">1</span>:<span class="v">6</span>), nrow = <span class="v">3</span>, ncol = <span class="v">2</span>)
+m
+<span class="res">     [,1] [,2]
+[1,]    1    4
+[2,]    2    5
+[3,]    3    6</span><br>
+<span class="c"># byrow = TRUEに設定(行ごとに埋まっていく)</span>
+m <- matrix(c(<span class="v">1</span>:<span class="v">6</span>), nrow = <span class="v">3</span>, ncol = <span class="v">2</span>, byrow = <span class="l">TRUE</span>
+m
+<span class="res">     [,1] [,2]
+[1,]    1    2
+[2,]    3    4
+[3,]    5    6</span></code></pre>
+                                                </div>
+                                        </li>
+                                        <li><strong>データフレームを作成する関数</strong><br>
+                                        使いかたは<a href="#intro-dataframe">データフレーム(data.frame)</a>を参照
+                                                <div class="code-frame">
+                                                        <pre><code>data.frame(col.nemes = data, …
+           row.names, 
+           check.rows, 
+           check.names,
+           fix.empty.names, 
+           stringsAsFactors)</code></pre>
+                                                </div>
+                                                <table>
+                                                        <thead>
+                                                                <tr>
+                                                                        <th>引数</th>
+                                                                        <th>説明</th>
+                                                                </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                                <tr>
+                                                                        <td>col.names = data</td>
+                                                                        <td>データフレームに格納したいベクトル(複数指定可能)<br>col.namesの部分に文字列を入れることで列名の指定が可能(省略可)</td>
+                                                                </tr>
+                                                                <tr>
+                                                                        <td>row.names</td>
+                                                                        <td>行名を指定<br>省略時は自動で1, 2, ...と割り振られる。</td>
+                                                                </tr>
+                                                                <tr>
+                                                                        <td>check.rows</td>
+                                                                        <td>列ごとに行数が一致しているかを確認する(TRUE/FALSEで指定, デフォルトはFALSE)</td>
+                                                                </tr>
+                                                                <tr>
+                                                                        <td>check.names</td>
+                                                                        <td>列名が有効なR変数かを確認する(TRUE/FALSEで指定, デフォルトはTRUE)</td>
+                                                                </tr>
+                                                                <tr>
+                                                                        <td>fix.empty.names</td>
+                                                                        <td>空の列名を自動で補完する(TRUE/FALSEで指定, デフォルトはTRUE)</td>
+                                                                </tr>
+                                                                <tr>
+                                                                        <td>stringAsFactor</td>
+                                                                        <td>文字列を因子型に変換する(TRUE/FALSEで指定, デフォルトはFALSE)</td>
+                                                                </tr>
+                                                        </tbody>
+                                                </table>
+                                        </li><br>
+                                        <li><strong>リストを作成する関数</strong><br>
+                                        使いかたは<a href="#intro-list">リスト(list)</a>を参照
+                                                <div class="code-frame">
+                                                        <pre><code>list(col.names = data, ...)</code></pre>
+                                                </div>
+                                                <table>
+                                                        <thead>
+                                                                <tr>
+                                                                        <th>引数</th>
+                                                                        <th>説明</th>
+                                                                </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                                <tr>
+                                                                        <td>col.names = data</td>
+                                                                        <td>リストに格納したいオブジェクト(複数指定可能)<br>col.namesの部分に文字列を入れることで列名の指定が可能(省略可)</td>
+                                                                </tr>
+                                                        </tbody>
+                                                </table>
+
+                                        </li>
+                                </ul>
+                        </div><br>
+                <h2 class="chapter" id="2">2. Rの基本構文</h2>
+                        <div>
+                                <h3 id="2-1">2-(1) 基本演算</h3>
+                                        <ul>
+                                                <li><strong>数値演算</strong>
+                                                        <table>
+                                                                <thead>
+                                                                        <tr>
+                                                                                <th>演算子</th>
+                                                                                <th>説明</th>
+                                                                        </tr>
+                                                                </thead>
+                                                                <tbody>
+                                                                        <tr>
+                                                                                <td><code class="land">+</code></td>
+                                                                                <td>足し算 (<code class="land">2 + 3</code> → <code class="land">5</code>)<br></td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                                <td><code class="land">-</code></td>
+                                                                                <td>引き算 (<code class="land">5 - 3</code> → <code class="land">2</code>)</td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                                <td><code class="land">*</code></td>
+                                                                                <td>掛け算 (<code class="land">2 * 3</code> → <code class="land">6</code>)</td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                                <td><code class="land">/</code></td>
+                                                                                <td>割り算 (<code class="land">6 / 2</code> → <code class="land">3</code>)</td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                                <td><code class="land">^</code></td>
+                                                                                <td>べき乗 (<code class="land">2 ^ 3</code> → <code class="land">8</code>)</td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                                <td><code class="land">%%</code></td>
+                                                                                <td>剰余 (<code class="land">5 %% 3</code> → <code class="land">2</code>)</td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                                <td><code class="land">%/%</code></td>
+                                                                                <td>整数除算 (<code class="land">5 %/% 3</code> → <code class="land">1</code>)</td>
+                                                                        </tr>
+                                                                </tbody>
+                                                        </table>
+                                                </li><br>
+                                                <li><strong>比較演算</strong>
+                                                        <table>
+                                                                <thead>
+                                                                        <tr>
+                                                                                <th>演算子</th>
+                                                                                <th>説明</th>
+                                                                        </tr>
+                                                                </thead>
+                                                                <tbody>
+                                                                        <tr>
+                                                                                <td><code class="land">==</code></td>
+                                                                                <td>等しい (<code class="land">2 == 2</code> → <code class="land">TRUE</code>)</td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                                <td><code class="land">!=</code></td>
+                                                                                <td>等しくない (<code class="land">2 != 3</code> → <code class="land">TRUE</code>)</td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                                <td><code class="land"><</code></td>
+                                                                                <td>小なり (<code class="land">2 < 3</code> → <code class="land">TRUE</code>)</td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                                <td><code class="land">></code></td>
+                                                                                <td>大なり (<code class="land">2 > 3</code> → <code class="land">FALSE</code>)</td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                                <td><code class="land"><=</code></td>
+                                                                                <td>以下 (<code class="land">2 <= 2</code> → <code class="land">TRUE</code>)</td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                                <td><code class="land">>=</code></td>
+                                                                                <td>以上 (<code class="land">3 <= 2</code> → <code class="land">FALSE</code>)</td>
+                                                                        </tr>
+                                                                </tbody>
+                                                        </table>
+                                                </li>
+                                        </ul>
+                                <h3 id="2-2">2-(2) 特殊な値</h3>
+                                <div>
+                                        <div>
+                                                <p>Rには<code class="land">NA</code>や<code class="land">NULL</code>といった特殊な値が存在する。<br>これらはエラーや思わぬ処理結果につながることがあるので、種類を見極めて除外したり置換する必要がある。<br><span class="more-detail">使い方によっては余計なエラーが出るのを防ぐことも出来る。特徴と挙動を把握しておくのが肝心。</span></p>
+                                        </div>
+                                        <ul>
+                                                <li><strong>NA (Not Available)</strong><br>
+                                                いわゆる欠損値。ベクトルやデータフレームの中で「あるはずだが観測されなかった」データを指す。<br>
+                                                <span class="more-detail">一般的には<code class="land">NA</code>(真理値logical)で表されるが、<code class="land">NA_real_</code>(実数double)や<code class="land">NA_integer_</code>(整数integer)などデータ型に依存した記号も用意されている。</span>
+                                                </li><br>
+                                                <li><strong>NULL (null))</strong><br>
+                                                未定義値/非存在値。そもそも「存在しない」データを指す。
+                                                </li><br>
+                                                <li><strong>NaN (Not a Number)</strong><br>
+                                                非数値。数学的に定義されていない値を指す。<br>
+                                                例：<code class="land">0 / 0</code>, <code class="land">Inf - Inf</code>
+                                                </li><br>
+                                                <li><strong>Inf (infinity)</strong><br>                                          
+                                                無限大<br>
+                                                <span class="more-detail">あまり使うことはないが、重み付きネットワークの最短経路問題を解くアルゴリズムであるベルマン-フォード(Bellman-Ford)法では各ノードの初期最短距離をInfで設定する。</span>
+                                                </li>
+                                        </ul>
+                                        <div class="tips-box">
+                                                <div class="tips-label">Tips</div>
+                                                <div class="tips-content">NAとNULLの扱われ方の違い</div>
+                                        </div>
+                                        <div class="code-frame">
+                                                <pre><code><span class="c"># ---NAの場合---</span>
+vec <- c(<span class="v">1</span>, <span class="v">2</span>, <span class="v">3</span>, <span class="l">NA</span>, <span class="v">5</span>)
+vec
+<span class="res"># [1]  1  2  3 NA  5</span><br>
+<span class="c"># vecの要素数を取得</span>
+length(vec)
+<span class="res"># [1] 5</span><br>
+<span class="c"># ---NULLの場合---</span>
+vec <- c(<span class="v">1</span>, <span class="v">2</span>, <span class="v">3</span>, <span class="l">NULL</span>, <span class="v">5</span>)
+vec
+<span class="res"># [1] 1 2 3 5</span><br>
+<span class="c"># vecの要素数を取得</span>
+length(vec)
+<span class="res"># [1] 4</span></code></pre>
+                                        </div>
+                                        <div>
+                                                <p>このように、<code class="land">NA</code>は欠損値として「ある」ものとして扱われる。一方で、<code class="land">NULL</code>はもとから「ない」ものとして扱われる。</p>
+                                        </div><br>
+                                        <div class="tips-box">
+                                                <div class="tips-label">Tips</div>
+                                                <div class="tips-content">予約語と組込み定数</div>
+                                        </div>
+                                        <div>
+                                                <p>Rには変数として上書き不可能な<strong>予約語</strong>と上書きは可能だが推奨されない<strong>組込み定数</strong>が存在する。</p>
+                                        </div>
+                                        <ol>
+                                                <li><strong>予約語</strong>
+                                                        <ul>
+                                                                <li>制御構文<br>
+                                                                <code class="land">if</code>, <code class="land">else</code>, <code class="land">while</code>, <code class="land">function</code>, <code class="land">for</code>, <code class="land">in</code>, <code class="land">next</code>, <code class="land">break</code>
+                                                                </li><br>
+                                                                <li>真理値<br>
+                                                                <code class="land">TRUE</code>, <code class="land">FALSE</code>
+                                                                </li><br>
+                                                                <li>特殊な値<br>
+                                                                <code class="land">NA</code>, <code class="land">NULL</code>, <code class="land">Inf</code>, <code class="land">NaN</code>, <code class="land">NA_integer_</code>, <code class="land">NA_real_</code>, <code class="land">NA_complex_</code>, <code class="land">NA_character_</code>, 
+                                                                </li>
+                                                        </ul>
+                                                </li>
+                                                <li><strong>組込み定数 (代表的なもの)</strong>
+                                                        <ul>
+                                                                <li>円周率π<br><code class="land">pi</code></li>
+                                                                <li>真理値<br><code class="land">T</code> (=TRUE), <code class="land">F</code> (=FALSE)</li>
+                                                        </ul>
+                                                </li>
+                                        </ol>
+                                </div>
+                                <h3 id="2-3">2-(3) 条件分岐</h3>
+                                <div>
+                                        <p>この節では、if文を使った条件分岐の構文について扱う。</p>
+                                        <p>条件が1つの場合は</p>
+                                        <div class="code-frame">
+                                                <pre><code><span class="o">if</span> (条件式) {
+  <span class="c"># 条件式が TRUE のときに実行する処理</span>
+} <span class="o">else</span> {
+  <span class="c"># 条件式が FALSE のときに実行する処理</span>
+}</code></pre>
+                                        </div>
+                                        <div>
+                                                <P><code class="land">else</code>以下は省略可能。<br>なお、条件が複数の場合は以下のようになる。</P>
+                                        </div>
+                                        <div class="code-frame">
+                                                <pre><code><span class="o">if</span> (条件式1) {
+  <span class="c"># 条件式1が TRUE のときに実行する処理</span>
+} <span class="o">else if</span> (条件式2) {
+  <span class="c"># 条件式2が TRUE のときに実行する処理</span>
+} ...</code></pre>
+                                        </div>
+                                </div>
+                                <h3 id="2-4">2-(4) ループ</h3>
+                                <div>
+                                        <ul>
+                                                <li><strong>forループ</strong><br>
+                                                決まった回数処理を繰り返すときに利用する。
+                                                ベクトルの長さが繰り返し回数になる。
+                                                        <div class="code-frame">
+                                                                <pre><code><span class="o">for</span> (variable <span class="o">in</span> vector) {
+ <span class="c"># 繰り返す処理</span>
+}</code></pre>
+                                                        </div>
+                                                        <div>
+                                                                <p><code class="land">vector</code>の1つ目から順番に、<code class="land">variable</code>に要素が代入されていく。</p>
+                                                                <p><strong>for文の使い方の例</strong></p>
+                                                        </div>
+                                                        <div class="code-frame">
+                                                                <pre><code><span class="c"># for文の使い方</span>
+result <- numeric(<span class="v">6</span>)<br>
+<span class="o">for</span> (i <span class="o">in</span> <span class="v">1</span>:<span class="v">6</span>) {
+  result[i] <- i * <span class="v">2</span>
+}
+result
+<span class="res"># [1]  2  4  6  8 10 12</span></code></pre>
+                                                        </div>
+                                                </li><br>
+                                                <li><strong>whileループ</strong><br>
+                                                指定した条件が<code class="land">TRUE</code>である限り処理を繰り返す。
+                                                        <div class="code-frame">
+                                                                <pre><code><span class="o">while</span>(条件式){
+  <span class="c"># 繰り返す処理</span>
+}</code></pre>
+                                                        </div>
+                                                        <div>
+                                                                <p>無限ループにならないよう、繰り返し処理の中で変数を変化させる必要がある。</p>
+                                                                <p><strong>while文の使い方</strong></p>
+                                                        </div>
+                                                        <div class="code-frame">
+                                                                <pre><code><span class="c"># while文の使い方</span>
+result <- numeric(<span class="v">6</span>)
+t <- <span class="v">1</span><br>
+<span class="o">while</span>(t <= <span class="v">6</span>){
+  result[t] <- t * <span class="v">2</span>
+  t <- t + <span class="v">1</span> <span class="c"># この操作を入れないとt == 1のままなので無限ループになってしまう！</span>
+}
+result
+<span class="res"># [1]  2  4  6  8 10 12</span></code></pre>
+                                                        </div>
+                                                </li><br>
+                                                <li><strong>repeatループ</strong><br>
+                                                終了条件をループ内で自分で設定する無限ループ
+                                                        <div class="code-frame">
+                                                                <pre><code><span class="o">repeat</span>{
+  <span class="c"># 繰り返す処理</span>
+  <span class="c"># 終了条件</span>
+  <span class="o">break</span>
+}</code></pre>
+                                                        </div>
+                                                        <div>
+                                                                <p>終了条件を間違えるとループ回数が0や無限になるので注意が必要</p>
+                                                                <p><strong>repeat文の使い方</strong></p>
+                                                        </div>
+                                                        <div class="code-frame">
+                                                                <pre><code><span class="c"># repeat文の使い方</span>
+result <- numeric(<span class="v">8</span>)
+t <- <span class="v">1</span><br>
+<span class="o">repeat</span>{
+  result[t] <- t * <span class="v">2</span>
+  t <- t + <span class="v">2</span>
+  <span class="o">if</span> (t * <span class="v">2</span> > <span class="v">12</span>) <span class="o">break</span>
+}
+result
+<span class="res"># [1]  2  4  6  8 10 12  0  0</span></code></pre>
+                                                        </div>
+                                                </li><br>
+                                                <li><strong>制御構文</strong><br>
+                                                ループの進行を制御するために、いくつかの制御構文が存在する。
+                                                <ul>
+                                                        <li><code class="land">next</code><br>次の繰り返しへスキップする。</li>
+                                                        <li><code class="land">break</code><br>ループを強制終了する。</li>
+                                                </ul>
+                                                <div>
+                                                        <p><strong>制御構文の使い方</strong></p>
+                                                        <div class="code-frame">
+                                                                <pre><code><span class="c"># 制御構文の使い方</span>
+result <- numeric(<span class="v">8</span>)<br>
+<span class="o">for</span> (t <span class="o">in</span> <span class="v">1</span>:<span class="v">8</span>) {
+  <span class="o">if</span> (t == <span class="v">3</span>) <span class="o">next</span> <span class="c">t = 3のとき、処理をスキップ</span>
+  <span class="o">if</span> (t > <span class="v">6</span>) <span class="o">break</span> <span class="c">t > 6のとき、処理を強制終了</span>
+  
+  result[t] <- t * <span class="v">2</span>
+}
+result
+<span class="res"># [1]  2  4  0  8 10 12  0  0</span></code></pre>
+                                                        </div>
+                                                </div>
+                                                </li>
+                                        </ul>
+                                        <div class="tips-box">
+                                                <div class="tips-label">Tips</div>
+                                                <div class="tips-content">ループ処理は処理が遅い。</div>
+                                        </div>
+                                        <div>
+                                                <p>Rのループ処理は仕様上、処理速度が大変遅い。<br>データサイズが大きい時は特に処理速度の遅さが顕著になるので、ベクトルやデータフレームを利用して出来る限りループの使用回数を減らすとよい。</p>
+                                                <p><strong>ループ処理とベクトル操作の処理速度の比較</strong><br>
+                                                今回は、2を先頭に1,000万個の偶数を要素とするベクトルを取得する際の処理速度を比較する。
+                                                </p>
+                                                <div class="code-frame">
+                                                        <pre><code><span class="c"># forを使ったときの処理速度</span>
+start_time <- Sys.time()<br>
+vec <- numeric(<span class="v">1e7</span>)
+<span class="o">for</span> (i <span class="o">in</span> <span class="v">1</span>:<span class="v">1e7</span>) {
+  vec[i] <- i * <span class="v">2</span>
+}<br>
+end_time <- Sys.time()
+elapsed <- round(as.numeric(difftime(end_time, start_time, units = "secs")), 4)
+<span class="c"># 処理にかかった時間(secs)</span>
+elapsed
+<span class="res"># [1] 0.308</span><br>
+<span class="c"># 変数の削除(環境を初期化して正確に処理速度を計測するため)</span>
+rm(list = ls())
+
+<span class="c"># ベクトルを使ったときの処理速度</span>
+start_time <- Sys.time()<br>
+vec <- c(<span class="v">1</span>:<span class="v">1e7</span>)
+vec <- vec * <span class="v">2</span><br>
+end_time <- Sys.time()
+elapsed <- round(as.numeric(difftime(end_time, start_time, units = "secs")), 4)
+<span class="c"># 処理にかかった時間(secs)</span>
+elapsed
+<span class="res"># [1] 0.1612</span></code></pre>
+                                                </div>
+                                                <p>このように、×2という単純な計算でもデータサイズが大きいとループ処理は約1.9倍の処理時間がかかる。<br>
+                                                Harvesin法(緯度経度から2点間の距離を求めるアルゴリズム)など、複雑な計算を繰り返し行う場合はさらにその差は顕著になる。
+                                                </p>
+                                        </div>
+                                </div>
+                        </div><br>
+                <h2 class="chapter" id="3">3. Rの操作 (実践編！)</h2>
+                        <div>
+                                <h3 id="3-1">3-(1) ディレクトリ操作</h3>
+                                <ul>
+                                        <li><strong>基本概念</strong>
+                                                <ol>
+                                                        <li><strong>パス</strong><br>
+                                                        ファイルの保存場所を示す住所のようなもので、データの読み込みや保存する際に必ず関わってくる重要な概念。<br>
+                                                        パスを正確に指定しないとファイルを読み込めなかったり保存先を見失ったりするので注意が必要。<br>
+                                                        </li><br>
+                                                        <li><strong>ディレクトリ</strong><br>
+                                                        ファイルを整理するためのフォルダのこと。
+                                                        フォルダの中にフォルダを入れて入れ子構造(ツリー構造)にすることも出来る。
+                                                        </li><br>
+                                                        <li><strong>ワーキングディレクトリ</strong><br>
+                                                        Rが今作業をしているディレクトリのこと。ファイルパスを指定するときの基準になる。
+                                                        </li>
+                                                        <div class="code-frame">
+                                                                <pre><code><span class="c"># 現在のワーキングディレクトリを確認</span>
+getwd()
+<span class="res"># [1] "C:/Users"</span> 
+<span class="c"># <- 現在RはC:ドライブ下のUsersというディレクトリをパス設定の基準としている。</span>
+
+<span class="c"># ディレクトリ内のファイル・フォルダを確認</span>
+list.files()
+<span class="res"># [1] "20250228hotel.csv"  "All Users"  "Default"  "Default User"
+# [2] "desktop.ini"  "haruk"  "Public"</span>
+<span class="c"># <- ワーキングディレクトリ("C:/Users")内のファイル・フォルダの相対パス(→ Tips:絶対パスと相対パス)が検索される。</span></code></pre>
+                                                        </div>
+                                                </ol>
+                                                <div class="tips-box">
+                                                        <div class="tips-label">Tips</div>
+                                                        <div class="tips-content">絶対パスと相対パス</div>
+                                                </div>
+                                                <div>
+                                                        <ul>
+                                                                <li><strong>絶対パス</strong><br>
+                                                                コンピュータ上のファイルの場所を完全に指定する方法。<br>
+                                                                ワーキングディレクトリに関係なくファイルを指定できるのがメリット。
+                                                                <div class="code-frame"><pre><code>"F:/pseudo/tourist/Takao/13Tokyo.feather</pre></code></div>
+                                                                </li>
+                                                                <li><strong>相対パス</strong><br>
+                                                                ワーキングディレクトリを基準にしてファイルパスを指定する方法。<br>
+                                                                <span class="more-detail">プロジェクトごとコードを移動させるときなどに便利だが、ワーキングディレクトリが変更された場合使えなくなる。</span>
+                                                                <div class="code-frame"><pre><code>"./tourist/Takao/13Tokyo.feather"</code></pre></div>
+                                                                </li>
+                                                        </ul>
+                                                </div>
+                                        </li>
+                                        <li><strong>実践的な操作</strong>
+                                                <ol>
+                                                        <li><strong>ワーキングディレクトリの確認と変更</strong>
+                                                                <div class="code-frame">
+                                                                        <pre><code><span class="c"># ワーキングディレクトリ確認</span>
+getwd()
+<span class="res"># [1] "C:/Users"</span><br>
+<span class="c"># ワーキングディレクトリを変更&改めて確認</span>
+setwd(<span class="v">"F:/pseudo"</span>)
+getwd()
+<span class="res"># [1] "F:/pseudo"</span></code></pre>
+                                                                </div>
+                                                        </li>
+                                                        <li><strong>ディレクトリの存在確認(→無ければ新規作成)</strong>
+                                                                <div class="code-frame">
+                                                                        <pre><code>dir_name <- "F:/research"
+<span class="o">if</span>(!dir.exists(dir_name)) dir.create(dir_name)
+<span class="c"></span></code></pre>
+                                                                </div>
+                                                        </li>
+                                                        <li><strong>パスの作成</strong>
+                                                                <div class="code-frame">
+                                                                        <pre><code><span class="c"># 保存先の親ディレクトリ</span>
+work_root <- <span class="v">"F:/research"</span>
+<span class="c"># 保存先の子ディレクトリ</span>
+pref_dir <- <span class="v">"people_flow"</span>
+<span class="c"># 保存するファイル名</span>
+file_name <- <span class="v">"13Tokyo.csv"</span><br>
+output_dir <- file.path(work_root, pref_dir, file_name)
+output_dir
+<span class="res"># [1] "F:/research/people_flow/13Tokyo.csv"</span></code></pre>
+                                                                </div>
+                                                        </li>
+                                                        <li><strong>ディレクトリ内のサブディレクトリ・ファイルのパスの取得</strong>
+                                                                <div class="code-frame">
+                                                                        <pre><code><span class="c"># サブディレクトリ名の取得</span>
+work_root <- <span class="v">"F:/Pseudo"</span>
+list.dirs(work_root, recursive = <span class="l">FALSE</span>)
+<span class="res"># [1] "F:/Pseudo/attributes"
+# [2] "F:/Pseudo/temp"
+# [3] "F:/Pseudo/tourist"
+# [4] "F:/Pseudo/touristGPKG"
+# [5] "F:/Pseudo/touristID"
+# [6] "F:/Pseudo/trajectory"</span><br>
+<span class="c"># ファイルパスの取得</span>
+work_root <- <span class="v">"F:/Pseudo/tourist/Karuizawa"</span>
+list.files(work_root, recursive = <span class="l">FALSE</span>)
+<span class="res"># [1] "10Gunma.feather" "11Saitama.feather" "13Tokyo.feather"
+# [2] "19Yamanashi.feather" "20Nagano.feather"</span></code></pre>
+                                                                </div>
+                                                        </li>
+                                                </ol>
+                                        </li>
+                                </ul>
+                                <h4>登場した関数</h4>
+                                <ul>
+                                        <li><strong>ワーキングディレクトリを確認する関数</strong><br>
+                                        返り値としてワーキングディレクトリが返される。
+                                                <div class="code-frame">
+                                                        <pre><code>getwd()</code></pre>
+                                                </div>
+                                                <table>
+                                                        <thead>
+                                                                <tr>
+                                                                        <th>引数</th>
+                                                                        <th>説明</th>
+                                                                </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                                <tr>
+                                                                        <td>-</td>
+                                                                        <td>引数を設定するとエラーが発生する</td>
+                                                                </tr>
+                                                        </tbody>
+                                                </table>
+                                        </li><br>
+                                        <li><strong>ワーキングディレクトリを変更する関数</strong>
+                                                <div class="code-frame">
+                                                        <pre><code>setwd(dir)</code></pre>
+                                                </div>
+                                                <table>
+                                                        <thead>
+                                                                <tr>
+                                                                        <th>引数</th>
+                                                                        <th>説明</th>
+                                                                </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                                <tr>
+                                                                        <td>dir</td>
+                                                                        <td>
+                                                                                移動先のパス(文字列型)<br>
+                                                                                絶対パスでも相対パスでも指定可能<br>
+                                                                                <strong>存在しないパスを指定するとエラーが発生する</strong>
+                                                                        </td>
+                                                                </tr>
+                                                        </tbody>
+                                                </table>
+                                        </li><br>
+                                        <li><strong>ディレクトリが存在するかを確認する関数</strong><br>
+                                        指定パスが存在するかどうかを<code class="land">TRUE</code>/<code class="land">FALSE</code>で返す。<br>
+                                        複数パスを指定した場合は<code class="land">TRUE</code>/<code class="land">FALSE</code>がベクトルが返される。
+                                                <div class="code-frame">
+                                                        <pre><code>dir.exists(path)</code></pre>
+                                                </div>
+                                                <table>
+                                                        <thead>
+                                                                <tr>
+                                                                        <th>引数</th>
+                                                                        <th>説明</th>
+                                                                </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                                <tr>
+                                                                        <td>paths</td>
+                                                                        <td>確認したいディレクトリのパス(文字列型, ベクトル形式で複数指定も可能)</td>
+                                                                </tr>
+                                                        </tbody>
+                                                </table>
+                                        </li><br>
+                                        <li><strong>ディレクトリを新規作成する関数</strong>
+                                                <div class="code-frame">
+                                                        <pre><code>dir.create(paths, showWarnings, recursive, mode = "0777")</code></pre>
+                                                </div>
+                                                <table>
+                                                        <thead>
+                                                                <tr>
+                                                                        <th>引数</th>
+                                                                        <th>説明</th>
+                                                                </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                                <tr>
+                                                                        <td>paths</td>
+                                                                        <td>作成したいパス(文字列型)</td>
+                                                                </tr>
+                                                                <tr>
+                                                                        <td>showWarnings</td>
+                                                                        <td>既にpathsが存在する際などに警告を表示するかどうかを論理型で指定<br>省略時は<code class="land">TRUE</code></td>
+                                                                </tr>
+                                                                <tr>
+                                                                        <td>recursive</td>
+                                                                        <td><code class="land">TRUE</code>にすると途中の階層が存在しない場合でもまとめてディレクトリを作成する。<br><code class="land">FALSE</code>にすると途中の階層が存在しない場合はエラーとなる。</td>
+                                                                </tr>
+                                                                <tr>
+                                                                        
+                                                                </tr>
+                                                        </tbody>
+                                                </table>
+                                        </li>
+                                </ul>
+                        </div>
+                </main>
+        </div>
+<body>
+</html>
