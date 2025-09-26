@@ -1,18 +1,18 @@
 body{
-    margin: 0;
-    height: 100vh;
-    display: grid;
-    grid-template-rows: 60px 1fr;
-    grid-template-columns: 250px 1fr 250px;
-    grid-template-areas: 
-        "header header header"
-        "sidebar main sidebar2";
-    line-height: 1.6;
-    box-sizing: border-box;
+        margin: 0;
+        height: 100vh;
+        display: grid;
+        grid-template-rows: 60px 1fr;
+        grid-template-columns: 250px 1fr 250px;
+        grid-template-areas: 
+                "header header header"
+                "sidebar main sidebar2";
+        line-height: 1.6;
+        box-sizing: border-box;
 }
 header {
     grid-area: header;
-    background: #333;
+    background: #336699;
     color: #fff;
     display: flex;
     align-items: center;
@@ -28,23 +28,19 @@ main {
     overflow-y: auto;
 }
 .toc_left {
-    grid-area: sidebar;
-    position: sticky;
-    top: 24px;
-    align-self: start;
-    padding: 12px;
-    overflow-y: auto;
-    background-color: #f6f6fa;
-    font-size: 14px;
-    height: 100vh;
-    }
-        .toc_left h2 {
-                font-size: 16px;
-                margin-top: 0 0 12px 0;
-        }
-        .toc_left ul {
-                list-style: none;
-                padding: 0;
+        grid-area: sidebar;
+        position: sticky;
+        top: 24px;
+        align-self: start;
+        padding: 12px;
+        overflow-y: auto;
+        background-color: #f6f6fa;
+        font-size: 14px;
+        height: 100vh;
+}
+.toc_left ul {
+        list-style: none;
+        padding: 0;
         }
         .toc_left li {
                 margin: 6px 0;
@@ -56,6 +52,34 @@ main {
         .toc_left a:hover {
                 text-decoration: underline;
         }
+.toc_right {
+        grid-area: sidebar2;
+        top: 24px;
+        align-self: start;
+        padding: 12px;
+        overflow-y: auto;
+        background-color: #f6f6f6;
+        font-size: 14px;
+        height: 100vh;
+}
+.toc_right h2 {
+        font-size: 16px;
+        margin: 0 0 12px 0;
+}
+.toc_right ul {
+        list-style: none;
+        padding: 0;
+}
+.toc_right li {
+        margin: 6px 0;
+}
+.toc_right a {
+        text-decoration: none;
+        color: #0366d6;
+}
+.toc_right a:hover {
+        text-decoration: underline;
+}
         .land {
                 background-color: #dcdcdc;
                 padding: 3px;
@@ -64,12 +88,17 @@ main {
         .chapter {
                 border-bottom: 2px solid #4682b4;
         }
-        @media screen and (max-width: 799px) {
-            main {
-                grid-column: 1 / -1;
-                width: 100vw;
-                padding: 24px;
-            }
+@media screen and (max-width: 1199px) {
+        body {
+                background-color: whitesmoke;
+        }
+        main {
+        background-color: white;
+        grid-column: 1 / -1;
+        width: 630px;
+        margin: 0 auto;
+        padding: 24px;
+        }
             .toc_left {
                 display: none;
             }

@@ -11,21 +11,36 @@
                 <h1>Rの使いかたマニュアル</h1>
         </header>
                 <aside class="toc_left">
-                        <h1>目次</h1>
-                        <ul>
-                                <h2><a href="#1">データ型とデータ構造</a></h2>
-                                        <ul>
-                                                <li><a href="#1-1">(1)データ型</a></li>
-                                                <li><a href="#1-2">(2)データ構造</a></li>
-                                        </ul>
-                                <h2><a href="#2">Rの基本構文</a></h2>
-                                        <ul>
-                                                <li><a href="#2-1">(1)基本演算</a></li>
-                                                <li><a href="#2-2">(2)特殊な値</a></li>
-                                                <li><a href="#2-3">(3)条件分岐</a></li>
-                                                <li><a href="#2-4">(4)ループ</a></li>
-                                        </ul>
-                        </ul>
+                        <nav>
+                                <h1>目次</h1>
+                                <ul>
+                                        <h2><a href="#1">データ型とデータ構造</a></h2>
+                                                <ul>
+                                                        <li><a href="#1-1">(1)データ型</a></li>
+                                                        <li><a href="#1-2">(2)データ構造</a></li>
+                                                </ul>
+                                        <h2><a href="#2">Rの基本構文</a></h2>
+                                                <ul>
+                                                        <li><a href="#2-1">(1)基本演算</a></li>
+                                                        <li><a href="#2-2">(2)特殊な値</a></li>
+                                                        <li><a href="#2-3">(3)条件分岐</a></li>
+                                                        <li><a href="#2-4">(4)ループ</a></li>
+                                                </ul>
+                                        <h2><a href="#3">Rの操作(実践編！)</a></h2>
+                                                <ul>
+                                                        <li><a href="#3-1">(1)ディレクトリ操作</a></li>
+                                                </ul>
+                                </ul>
+                        </nav>
+                </aside>
+                <aside class="toc_right">
+                        <nav>
+                                <h1>関数索引</h1>
+                                <ul id="function-list">
+                                        <li><a href="#as.numeric">as.numeric()</a></li>
+                                        <li><a href="#class">class()</a></li>
+                                </ul>
+                        </nav>
                 </aside>
                 <main>
                 <h2 class="chapter" id="1">1. データ型とデータ構造</h2>
@@ -345,7 +360,7 @@ list_ex[[<span class="v">3</span>]]
                                         </div>
                                 <h4>登場した関数</h4>
                                 <ul>
-                                        <li><strong>引数をベクトルにまとめる関数</strong>
+                                        <li id="class"><strong>引数をベクトルにまとめる関数</strong>
                                                 <div class="code-frame">
                                                         <pre><code>c(x, …)</code></pre>
                                                 </div>
@@ -385,7 +400,7 @@ vec3
 <span class="res"># [1] 1 2 3 4 5</span></code></pre>
                                                 </div>
                                         </li>
-                                        <li><strong>空の数値ベクトルを作成する関数</strong><br>
+                                        <li id="numeric"><strong>空の数値ベクトルを作成する関数</strong><br>
                                         要素はすべて0になる。
                                                 <div class="code-frame">
                                                         <pre><code>numeric(length)</code></pre>
@@ -421,7 +436,7 @@ vec
 <span class="res"># [1] 2 4 6 8</code></pre>
                                                 </div>
                                         </li>
-                                        <li><strong>因子型データを作成する関数</strong><br>
+                                        <li id="factor"><strong>因子型データを作成する関数</strong><br>
                                         使いかたは<a href="#intro-factor">因子(factor)</a>を参照
                                                 <div class="code-frame">
                                                         <pre><code>factor(x, levels, labels, exclude, ordered, nmax)</code></pre>
@@ -461,7 +476,7 @@ vec
                                                         </tbody>
                                                 </table>
                                         </li><br>
-                                        <li><strong>行列を作成する関数</strong>
+                                        <li id="matrix"><strong>行列を作成する関数</strong>
                                                 <div class="code-frame">
                                                         <pre><code>matrix(data, nrow, ncol, byrow, dimnames)</code></pre>
                                                 </div>
