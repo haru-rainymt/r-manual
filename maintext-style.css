@@ -63,7 +63,7 @@ main {
         height: 100vh;
 }
 .toc_right h2 {
-        font-size: 16px;
+        font-size: 14px;
         margin: 0 0 12px 0;
 }
 .toc_right ul {
@@ -91,6 +91,7 @@ main {
 @media screen and (max-width: 1199px) {
         body {
                 background-color: whitesmoke;
+                height: 100vh;
         }
         main {
         background-color: white;
@@ -99,10 +100,34 @@ main {
         margin: 0 auto;
         padding: 24px;
         }
-            .toc_left {
+        .toc_left {
                 display: none;
-            }
         }
+        .toc_right {
+                display: none;
+        }
+        }
+@media screen and (max-width: 449px){
+        body {
+                height: 100vh;
+                width: 100vw;
+        }
+        main {
+                font-size: 16px;
+                line-height: 1.5;
+                grid-column: 1 / -1;
+                width: 100vw;
+                height: 100vh;
+                margin: 0 auto;
+                padding: 8px;
+        }
+        .toc_left {
+                display: none;
+        }       
+        .toc_right {
+                display: none;
+        }
+}
         @media print {
                 .toc {
                         display: none;
