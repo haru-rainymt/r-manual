@@ -59,35 +59,29 @@
                                         実数を扱っており、数値計算を行うときに最もオーソドックスな型。<br>
                                         <span class="more-detail">倍精度浮動小数点数で表され、1要素あたり8バイトで保存される。</span>
                                                 <div class="code-frame">
-                                                        <code>
-                                                                x <- 1.002<br><br>
-                                                                <span class="c"># xのデータ型を確認</span><br>
-                                                                class(x)<br>
-                                                                <span class="res"># [1] "numeric"</span>
-                                                        </code>
+                                                        <pre><code>x <- 1.002<br>
+<span class="c"># xのデータ型を確認</span>
+class(x)
+<span class="res"># [1] "numeric"</span></code></pre>
                                                 </div>
                                         </li>
                                         <li><strong>整数型(integer)</strong><br>
                                         整数を扱っており、明示的に整数型として代入する場合はLを付ける。<br>
                                         <span class="more-detail">1要素当たり4バイトで保存されるため、大規模な整数データを扱う際はnumeric型よりもinteger型の方が省メモリになる。計算速度は両者とも大差ない。</span>
                                                 <div class="code-frame">
-                                                        <code>
-                                                                x <- <span class="v">12L</span><br><br>
-                                                                <span class="c"># xのデータ型を確認</span><br>
-                                                                class(x)<br>
-                                                                <span class="res"># [1] "integer"</span>
-                                                        </code>
+                                                        <pre><code>x <- <span class="v">12L</span><br>
+<span class="c"># xのデータ型を確認</span>
+class(x)
+<span class="res"># [1] "integer"</span></code></pre>
                                                 </div>
                                         </li>
                                         <li><strong>論理型(logical)</strong><br>
                                         真偽値(TRUE/FALSE)を扱う。
                                                 <div class="code-frame">
-                                                        <code>
-                                                                x <- <span class="l">TRUE</span><br><br>
-                                                                <span class="c"># xのデータ型を確認</span><br>
-                                                                class(x)<br>
-                                                                <span class="res"># [1] "logical"</span>
-                                                        </code>
+                                                        <pre><code>x <- <span class="l">TRUE</span><br>
+<span class="c"># xのデータ型を確認</span>
+class(x)
+<span class="res"># [1] "logical"</span></code></pre>
                                                 </div>
                                         </li>
                                         <li><strong>文字列型(character)</strong><br>
@@ -95,15 +89,13 @@
                                         また、計算ができないので、数字が文字列型として保存されているとき注意が必要。<br>
                                         <span class="more-detail">最低8バイト消費し、文字列の長さの分だけサイズが大きくなる。</span>
                                                 <div class="code-frame">
-                                                        <code>
-                                                                x <- <span class="v">"3"</span><br><br>
-                                                                <span class="c"># xのデータ型を確認</span><br>
-                                                                class(x)<br>
-                                                                <span class="res"># [1] "character"</span><br><br>
-                                                                <span class="c"># character型は計算ができないことの確認</span><br>
-                                                                x + 2<br>
-                                                                <span class="res"># x + 2 でエラー: 二項演算子の引数が数値ではありません</span>
-                                                        </code>
+                                                        <pre><code>x <- <span class="v">"3"</span><br>
+<span class="c"># xのデータ型を確認</span>
+class(x)
+<span class="res"># [1] "character"</span><br>
+<span class="c"># character型は計算ができないことの確認</span>
+x + 2
+<span class="res"># x + 2 でエラー: 二項演算子の引数が数値ではありません</span></code></pre>
                                                 </div>
                                         </li>
                                         <li><strong>Date型</strong><br>
@@ -111,23 +103,21 @@
                                         引き算により日数差を計算することもでき、結果はdifftime型となる。<br>
                                         <span class="more-detail">内部的には1970-01-01からの日数がdouble型として保持されている。</span>
                                                 <div class="code-frame">
-                                                        <code>
-                                                                date <- as.Date(<span class="v">"2025-09-07"</span>)<br><br>
-                                                                <span class="c"># dateのデータ型を確認</span><br>
-                                                                class(date)<br>
-                                                                <span class="res"># [1] "Date"</span><br><br>
-                                                                date2 <- as.Date(<span class="v">"2026-06-15"</span>)<br><br>
-                                                                <span class="c"># 2026-06-15と2025-09-07の日数差を計算</span><br>
-                                                                diff <- date2 - date<br>
-                                                                diff<br>
-                                                                <span class="res"># Time difference of 281 days</span><br><br>
-                                                                <span class="c"># 計算結果のデータ型を確認</span><br>
-                                                                class(diff)<br>
-                                                                <span class="res"># [1] "difftime"</span><br><br>
-                                                                <span class="c"># numeric型に変換すると日数になることの確認</span><br>
-                                                                as.numeric(date)<br>
-                                                                <span class="res"># [1] 20338</span>
-                                                        </code>
+                                                        <pre><code>date <- as.Date(<span class="v">"2025-09-07"</span>)<br>
+<span class="c"># dateのデータ型を確認</span>
+class(date)
+<span class="res"># [1] "Date"</span><br>
+date2 <- as.Date(<span class="v">"2026-06-15"</span>)<br>
+<span class="c"># 2026-06-15と2025-09-07の日数差を計算</span><br>
+diff <- date2 - date
+diff
+<span class="res"># Time difference of 281 days</span><br>
+<span class="c"># 計算結果のデータ型を確認</span>
+class(diff)
+<span class="res"># [1] "difftime"</span><br>
+<span class="c"># numeric型に変換すると日数になることの確認</span>
+as.numeric(date)
+<span class="res"># [1] 20338</span></code></pre>
                                                 </div>
                                         </li>
                                         <li><strong>POSIXct型</strong><br>
@@ -135,18 +125,16 @@
                                         引き算により経過時間を計算することもでき、結果はdifftime型となる。<br>
                                         <span class="more-detail">内部的にはUTCエポック(1970-01-01 00:00:00 UTC)からの経過秒数がdouble型として保持されている。</span>
                                                 <div class="code-frame">
-                                                        <code>
-                                                                <span class="c">#タイムゾーンをAsia/Tokyoに指定する場合(デフォルトではtz = "UTC")</span><br>
-                                                                t <- as.POSIXct(<span class="v">"2025-09-07 16:20:00"</span>, tz = <span class = "v">"Asia/Tokyo"</span>)<br>
-                                                                t<br>
-                                                                <span class="res"># [1] "2025-09-07 16:20:00 JST"</span><br><br>
-                                                                <span class="c"># tのデータ型を確認</span><br>
-                                                                class(t)<br>
-                                                                <span class="res"># [1] "POSIXct" "POSIXt"</span><br><br>
-                                                                <span class="c"># numeric型に変換するとUTCエポックからの経過秒数になることの確認</span><br>
-                                                                as.numeric(t)<br>
-                                                                <span class="res"># [1] 1757229600</span>
-                                                        </code>
+                                                        <pre><code><span class="c">#タイムゾーンをAsia/Tokyoに指定する場合(デフォルトではtz = "UTC")</span><br>
+t <- as.POSIXct(<span class="v">"2025-09-07 16:20:00"</span>, tz = <span class = "v">"Asia/Tokyo"</span>)
+t
+<span class="res"># [1] "2025-09-07 16:20:00 JST"</span><br>
+<span class="c"># tのデータ型を確認</span>
+class(t)
+<span class="res"># [1] "POSIXct" "POSIXt"</span><br>
+<span class="c"># numeric型に変換するとUTCエポックからの経過秒数になることの確認</span>
+as.numeric(t)
+<span class="res"># [1] 1757229600</span></code></pre>
                                                 </div>
                                         </li>
                                 </ul>
@@ -250,15 +238,13 @@
                                         同一データ型の要素を並べた１次元配列<br>
                                         基本データ型(numeric, integer, logical, complex, character, raw)しか代入できない。
                                                 <div class="code-frame">
-                                                        <code>
-                                                                <span class="c">#ベクトルの作り方(よく使うやつ)</span><br>
-                                                                a <- numeric(<span class="v">4</span>)<br>
-                                                                a<br>
-                                                                <span class="res"># [1] 0 0 0 0</span><br><br>
-                                                                name <- c(<span class="v">"Tanaka"</span>, <span class="v">"Satou"</span>, <span class="v">"Yamada"</span>)<br>
-                                                                name<br>
-                                                                <span class="res"># [1] "Tanaka" "Satou"  "Yamada"</span>
-                                                        </code>
+                                                        <pre><code><span class="c">#ベクトルの作り方(よく使うやつ)</span>
+a <- numeric(<span class="v">4</span>)
+a
+<span class="res"># [1] 0 0 0 0</span><br>
+name <- c(<span class="v">"Tanaka"</span>, <span class="v">"Satou"</span>, <span class="v">"Yamada"</span>)
+name
+<span class="res"># [1] "Tanaka" "Satou"  "Yamada"</span></code></pre>
                                                 </div>
                                         </li>
                                         <li id="intro-factor"><strong>因子(factor)</strong><br>
@@ -266,20 +252,18 @@
                                         因子化しておくと、統計解析を行う際に文字列の見た目のまま変数として扱えるため、使用頻度は多い。<br>
                                         <span class="more-detail">内部的には「文字列のベクトル」を「ラベル＋整数のベクトル」として扱うため、重複の多い文字列を扱う際はメモリ効率が良くなる。</span>
                                                 <div class="code-frame">
-                                                        <code>
-                                                                <span class="c"># 文字列(名義尺度) → 因子</span><br>
-                                                                factors <- factor(c(<span class="v">"Tokyo"</span>, <span class="v">"Chiba"</span>, <span class="v">"Chiba"</span>, <span class="v">"Tokyo"</span>, <span class="v">"Kanagawa"</span>))<br>
-                                                                factors<br>
-                                                                <span class="res"># [1] Tokyo    Chiba    Chiba    Tokyo    Kanagawa<br>
-                                                                # Levels: Chiba Kanagawa Tokyo</span><br><br>
-                                                                <span class="c"># 文字列(順序尺度) → 因子</span><br>
-                                                                gakureki <- factor(c(<span class="v">"大卒"</span>, <span class="v">"大卒"</span>, <span class="v">"修士"</span>, <span class="v">"高卒"</span>, <span class="v">"高卒"</span>, <span class="v">"大卒"</span>, <span class="v">"高卒"</span>),<br>
-                                                                                　　　　　　　　　&nbsp;levels = c(<span class="v">"中卒"</span>, <span class="v">"高卒"</span>, <span class="v">"大卒"</span>, <span class="v">"修士"</span>),<br>
-                                                                                　　　　　　　　　&nbsp;ordered = <span class="l">TRUE</span>)<br>
-                                                                gakureki<br>
-                                                                <span class="res"># [1] 大卒 大卒 修士 中卒 高卒 大卒 高卒<br>
-                                                                # Levels: 中卒 < 高卒 < 大卒 < 修士</span>
-                                                        </code>
+                                                        <pre><code><span class="c"># 文字列(名義尺度) → 因子</span>
+factors <- factor(c(<span class="v">"Tokyo"</span>, <span class="v">"Chiba"</span>, <span class="v">"Chiba"</span>, <span class="v">"Tokyo"</span>, <span class="v">"Kanagawa"</span>))
+factors
+<span class="res"># [1] Tokyo    Chiba    Chiba    Tokyo    Kanagawa
+# Levels: Chiba Kanagawa Tokyo</span><br>
+<span class="c"># 文字列(順序尺度) → 因子</span>
+gakureki <- factor(c(<span class="v">"大卒"</span>, <span class="v">"大卒"</span>, <span class="v">"修士"</span>, <span class="v">"高卒"</span>, <span class="v">"高卒"</span>, <span class="v">"大卒"</span>, <span class="v">"高卒"</span>),
+                   levels = c(<span class="v">"中卒"</span>, <span class="v">"高卒"</span>, <span class="v">"大卒"</span>, <span class="v">"修士"</span>),
+                   ordered = <span class="l">TRUE</span>)
+gakureki
+<span class="res"># [1] 大卒 大卒 修士 中卒 高卒 大卒 高卒
+# Levels: 中卒 < 高卒 < 大卒 < 修士</span></code></pre>
                                                 </div>
                                         </li>
                                         <li><strong>行列(matrix)</strong><br>
